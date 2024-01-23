@@ -38,7 +38,7 @@ def callback():
 def get_response_from_excel(input_text):
     try:
         results_str = f'{input_text} 年次的訥音\n'
-        for  df in excel_data.items():
+        for  sheet_name, df in excel_data.items():
             result = df[df["農曆年次"] == int(input_text)]
             if not result.empty:
                 calculate = result["天干地支"].values[0]
@@ -46,7 +46,7 @@ def get_response_from_excel(input_text):
                 good = result["吉訥音"].values[0]
                 bad = result["凶訥音"].values[0]
                 for index, row in result.iterrows():
-                  results_str += f'【{row["天干地支"]}年，{row["訥音"]}】\n\n 【吉】{row["吉訥音"]}\n\n 【凶】{row["凶訥音"]}\n\n 【論訥音】{row["論訥音吉凶"]}\n'
+                    results_str += f'【{row["天干地支"]}年，{row["訥音"]}】\n\n 【吉】{row["吉訥音"]}\n\n 【凶】{row["凶訥音"]}\n\n 【論訥音】{row["論訥音吉凶"]}\n'
                 return results_str
         return "No matching response found"
     except Exception as e:
