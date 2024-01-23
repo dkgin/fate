@@ -15,8 +15,8 @@ excel_data = pd.read_excel(BytesIO(response.content), engine='openpyxl')
 
 app = Flask(__name__)
 
-@app.route("/", methods=['POST'])
-def linebot():
+@app.route("/callback", methods=['POST'])
+def callback():
     body = request.get_data(as_text=True)                    # 取得收到的訊息內容
     try:
         json_data = json.loads(body)                         # json 格式化訊息內容
