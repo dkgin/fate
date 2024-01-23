@@ -8,7 +8,10 @@ import requests
 from io import BytesIO
 
 url = "https://raw.githubusercontent.com/dkgin/fate/main/path/to/三命通會.xlsx"
-excel_data = pd.read_excel(url, engine='openpyxl')
+response = requests.get(url)
+response.raise_for_status()
+
+excel_data = pd.read_excel(BytesIO(response.content), engine='openpyxl')
 
 app = Flask(__name__)
 
