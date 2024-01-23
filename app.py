@@ -16,7 +16,7 @@ excel_data = pd.read_excel(BytesIO(response.content), engine='openpyxl')
 app = Flask(__name__)
 
 @app.route("/callback", methods=['POST'])
-def linebot():
+def callback():
     body = request.get_data(as_text=True)                    # 取得收到的訊息內容
     try:
         json_data = json.loads(body)                         # json 格式化訊息內容
@@ -33,7 +33,13 @@ def linebot():
         print(f"Error: {e}")
         print(body)                                          # 如果發生錯誤，印出收到的內容
     return 'OK'                 # 驗證 Webhook 使用，不能省略
-def callback(input_text):
+
+import os
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
+
+def get_response_from_excel(input_text):
     try:
         results_str = f'{input_text} 年次的訥音\n'
         for  sheet_name, df in excel_data.items():
@@ -49,7 +55,3 @@ def callback(input_text):
         return "No matching response found"
     except Exception as e:
         return f"Error: {str(e)}"
-import os
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
