@@ -43,7 +43,7 @@ def get_response_from_excel(input_text):
     try:
         results_str = f'{input_text} 年次的訥音\n'
         for  sheet_name, df in excel_data.items():
-            result = df[df["農曆年次"] == int(input_text)]
+            result = df[df["農曆年次"] == input_text]
             if not result.empty:
                 calculate = result["天干地支"].values[0]
                 attribute = result["訥音"].values[0]
