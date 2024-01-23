@@ -7,7 +7,7 @@ import pandas as pd
 import requests
 from io import BytesIO
 
-url = "https://raw.githubusercontent.com/dkgin/fate/main/path/to/三命通會.xlsx"
+url = "https://raw.githubusercontent.com/dkgin/fate/main/三命通會.xlsx"
 response = requests.get(url)
 response.raise_for_status()
 
