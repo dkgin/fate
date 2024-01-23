@@ -11,7 +11,7 @@ url = "https://raw.githubusercontent.com/dkgin/fate/main/三命通會.xlsx"
 response = requests.get(url)
 response.raise_for_status()
 
-excel_data = pd.read_excel(BytesIO(response.content), engine='openpyxl')
+excel_data = pd.read_excel(BytesIO(response.content), engine='openpyxl', sheet_name=None)
 
 app = Flask(__name__)
 
