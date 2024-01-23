@@ -7,9 +7,8 @@ import pandas as pd
 import requests
 from io import BytesIO
 
-github_raw_url = "https://raw.githubusercontent.com/dkgin/fate/main/path/to/三命通會.xlsx"
-response = requests.get(github_raw_url)
-excel_data = pd.read_excel(BytesIO(response.content))
+url = "https://raw.githubusercontent.com/dkgin/fate/main/path/to/三命通會.xlsx"
+excel_data = pd.read_excel(url, engine='openpyxl')
 
 app = Flask(__name__)
 
