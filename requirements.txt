@@ -5,3 +5,5 @@ Werkzeug==2.2.2
 pandas
 openpyxl==3.0.0
 numpy==1.19.5
+setuptools
+six
