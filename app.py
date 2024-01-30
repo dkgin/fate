@@ -1,10 +1,10 @@
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import os
 import pandas as pd
-import requests
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, StickerSendMessage, ImageSendMessage, LocationSendMessage
+import requests, json, time, statistics
 from io import BytesIO
 
 url = "https://raw.githubusercontent.com/dkgin/fate/main/三命通會.xlsx"
