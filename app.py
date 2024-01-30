@@ -39,8 +39,8 @@ def fate(msg):
                   results_str += f'【{row["天干地支"]}年，{row["訥音"]}】\n\n 【吉】{row["吉訥音"]}\n\n 【凶】{row["凶訥音"]}\n\n 【論訥音】{row["論訥音吉凶"]}\n'
                 return results_str
         return "請輸入出生農曆年次"
-    except Exception as e:
-        return f"Error: {str(e)}"
+    except:
+        return "請輸入出生農曆年次"
 
 app = Flask(__name__)
 
