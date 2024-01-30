@@ -29,7 +29,7 @@ def fate(msg):
     try:
         results_str = f'{msg} 年次的訥音\n'
         for sheet_name, df in excel_data.items():
-            result = df[df["天干地支"] == int(msg)]
+            result = df[df["農曆年次"] == int(msg)]
             if not result.empty:
                 calculate = result["天干地支"].values[0]
                 attribute = result["訥音"].values[0]
@@ -38,7 +38,7 @@ def fate(msg):
                 for index, row in result.iterrows():
                   results_str += f'【{row["天干地支"]}年，{row["訥音"]}】\n\n 【吉】{row["吉訥音"]}\n\n 【凶】{row["凶訥音"]}\n\n 【論訥音】{row["論訥音吉凶"]}\n'
                 return results_str
-        return "No matching response found"
+        return "請輸入出生農曆年次"
     except Exception as e:
         return f"Error: {str(e)}"
 
