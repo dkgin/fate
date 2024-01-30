@@ -9,9 +9,7 @@ from io import BytesIO
 
 url = "https://raw.githubusercontent.com/dkgin/fate/main/三命通會.xlsx"
 response = requests.get(url)
-response.raise_for_status()
-
-excel_data = pd.read_excel(BytesIO(response.content), engine='openpyxl')
+excel_data = pd.read_excel(BytesIO(response.content), engine='openpyxl',sheet_name=None)
 
 # LINE 回傳訊息函式
 def reply_message(msg, rk, token):
@@ -31,7 +29,7 @@ def fate(msg):
     try:
         results_str = f'{msg} 年次的訥音\n'
         for sheet_name, df in excel_data.items():
-            result = df[df["天干地支"] == msg]
+            result = df[df["天干地支"] == int(msg)]
             if not result.empty:
                 calculate = result["天干地支"].values[0]
                 attribute = result["訥音"].values[0]
