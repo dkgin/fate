@@ -24,6 +24,20 @@ def reply_message(msg, rk, token):
   req = requests.request('POST', 'https://api.line.me/v2/bot/message/reply', headers=headers,data=json.dumps(body).encode('utf-8'))
   print(req.text)
 
+# LINE 回傳圖片函式
+def reply_image(msg, rk, token):
+  headers = {'Authorization':f'Bearer {token}','Content-Type':'application/json'}
+  body = {
+  'replyToken':rk,
+  'messages':[{
+      'type': 'image',
+      'originalContentUrl': msg,
+      'previewImageUrl': msg
+      }]
+  }
+  req = requests.request('POST', 'https://api.line.me/v2/bot/message/reply', headers=headers,data=json.dumps(body).encode('utf-8'))
+  print(req.text)
+
 # 三命通會
 def fate(msg):
     try:
@@ -62,7 +76,10 @@ def callback():
             print(json_data)
             if msg_type == 'text':
               msg = json_data['events'][0]['message']['text']
-              reply_message(f'{fate(msg)}', reply_token, access_token)
+              if msg == '訥音' or msg == '訥音表':
+                reply_image(f'https://raw.githubusercontent.com/dkgin/fate/main/resize.jpg', reply_token, access_token)
+              else:
+                reply_message(f'{fate(msg)}', reply_token, access_token)
 
     except InvalidSignatureError:
       abort(400)
