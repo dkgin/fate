@@ -47,14 +47,17 @@ def fate(msg):
             if not result.empty:
                 calculate = result["天干地支"].values[0]
                 attribute = result["訥音"].values[0]
+                view = result["取象"].values[0]
+                note = result["註"].values[0]
+                character = result["釋性質"].values[0]
                 good = result["吉訥音"].values[0]
                 bad = result["凶訥音"].values[0]
                 for index, row in result.iterrows():
-                  results_str += f'【{row["天干地支"]}年，{row["訥音"]}】\n\n 【吉】{row["吉訥音"]}\n\n 【凶】{row["凶訥音"]}\n\n 【論訥音】{row["論訥音吉凶"]}\n'
+                  results_str += f'【{row["天干地支"]}年，{row["訥音"]}】\n\n 【取象】{row["取象"]}\n\n 【註】{row["註"]}\n\n 【釋性質】{row["釋性質"]}\n\n 【吉】{row["吉訥音"]}\n\n 【凶】{row["凶訥音"]}\n\n 【論訥音】{row["論訥音吉凶"]}\n'
                 return results_str
-        return "請輸入出生農曆年次"
+        return "請輸入您想查詢的農曆年份"
     except:
-        return "請輸入出生農曆年次"
+        return "請輸入您想查詢的農曆年份"
 
 app = Flask(__name__)
 
