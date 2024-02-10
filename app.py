@@ -82,7 +82,7 @@ def callback():
               if msg == '訥音' or msg == '訥音表':
                 reply_image(f'https://raw.githubusercontent.com/dkgin/fate/main/resize.jpg', reply_token, access_token)
               elif msg == '八卦' or msg == '八卦圖':
-                reply_image(f'https://raw.githubusercontent.com/dkgin/fate/main/八卦圖.png', reply_token, access_token)
+                reply_image(f'https://raw.githubusercontent.com/dkgin/fate/main/picture.png', reply_token, access_token)
               else:
                 reply_message(f'{fate(msg)}', reply_token, access_token)
 
